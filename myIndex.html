@@ -1,0 +1,28 @@
+ <script>  
+  
+ coords = [[0,0,0],[4581.5, -92.52099609283012, 18],[0,0,0],[4581.5, -92.52099609283012, 18],]
+ levels = [5,1,3,5]
+
+  function moveCam(coord){
+    var waypoint = new THREE.Vector3(coord[0],coord[1],coord[2])
+    window.camera.lookAt(waypoint)
+    console.log("move") 
+  };
+
+  function zoomCam(zoomLevel){  
+    window.camera.zoom = zoomLevel
+    console.log("zoooom")
+    if (zoomLevel == levels[levels.length-1]){ 
+      console.profileEnd();  
+    } 
+  };
+
+  function startTest(){
+    for (i = 0; i < coords.length; i++) {
+      setTimeout(moveCam.bind(null, coords[i]), i*1000 + 10000)
+      setTimeout(zoomCam.bind(null, levels[i]), (i+1)*2000 + 10000)
+    };
+
+  }
+
+</script>
